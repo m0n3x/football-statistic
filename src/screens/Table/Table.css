@@ -1,0 +1,22 @@
+.table__wrapper {
+    width: 60%;
+    margin: 2% auto;
+}
+.table {
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    background-color: gray;
+    height: 400px;
+}
+.table__header {
+    text-align: center;
+    background-color: #259c25;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
+.table__header > a {
+    color: #fff;
+    font-size: 20px;
+    padding: 3%;
+}
