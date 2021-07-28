@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Table.css";
 import Layout from "../../components/Layout/Layout";
+import Loader from "../../components/Loader";
 
 const LEAGUES = [
   { name: "English Premier League", id: 2021 },
@@ -13,10 +14,10 @@ const LEAGUES = [
 const Table = () => {
   const [data, setData] = useState([]);
   const [activeLeague, setActiveLeague] = useState(0);
-  //   const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const fetchData = async () => {
-    // setLoading(true);
+    setLoading(true);
     const activeLeagueId = LEAGUES[activeLeague].id;
     const data = await fetch(
       `https://api.football-data.org/v2/competitions/${activeLeagueId}/standings`,
@@ -25,11 +26,11 @@ const Table = () => {
       .then((response) => response.json())
       .catch(() => {
         console.error("Failed to fetch data");
-        // setLoading(false);
+        setLoading(false);
       });
 
     setData(data.standings[0].table);
-    // setLoading(false);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -73,6 +74,7 @@ const Table = () => {
             <p>GC</p>
             <p>P</p>
           </div>
+          {loading && <Loader />}
           {data.map((team, index) => {
             return (
               <div
@@ -100,4 +102,4 @@ const Table = () => {
 };
 export default Table;
 
-///v2/competitions/2021/standings?standingType="TOTAL
+
