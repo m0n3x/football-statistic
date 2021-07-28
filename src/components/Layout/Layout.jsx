@@ -8,8 +8,8 @@ const Layout = ({ children }) => {
             <h1 >Football Statistics</h1>
             <nav className="header__menu">
                 <ul className="menu__list">
-                    <li><a href="#table" class="menu__item">table</a></li>
-                    <li><a href="#teams" class="menu__item">teams</a></li>
+                    <li><a href="#table" className="menu__item">table</a></li>
+                    <li><a href="#teams" className="menu__item">teams</a></li>
                 </ul>
             </nav>
         </header>

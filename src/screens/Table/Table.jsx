@@ -1,25 +1,103 @@
-import React from 'react';
-import  './Table.css';
-import Layout from '../../components/Layout/Layout'
-import moch from '../Table/mock'
+import React, { useEffect, useState } from "react";
+import "./Table.css";
+import Layout from "../../components/Layout/Layout";
+
+const LEAGUES = [
+  { name: "English Premier League", id: 2021 },
+  { name: "German 1. Bundesliga", id: 2002 },
+  { name: "Spanish Primera", id: 2014 },
+  { name: "Italian Serie A", id: 2019 },
+  { name: "French League 1", id: 2015 },
+];
 
 const Table = () => {
-    return (
-        <Layout>
-            <div className="table__wrapper">
-                <div className="table__header">
-                    <a href="#english">English Premier League</a>
-                    <a href="#german">German 1. Bundesliga</a>
-                    <a href="#spanish">Spanish Primera</a>
-                    <a href="#italian">Italian Serie A</a>
-                    <a href="#french">French League 1</a>
-                </div>
-                <div className="table">
-                    
-                </div>
-            </div>
-            
-        </Layout>
+  const [data, setData] = useState([]);
+  const [activeLeague, setActiveLeague] = useState(0);
+  //   const [loading, setLoading] = useState(false);
+
+  const fetchData = async () => {
+    // setLoading(true);
+    const activeLeagueId = LEAGUES[activeLeague].id;
+    const data = await fetch(
+      `https://api.football-data.org/v2/competitions/${activeLeagueId}/standings`,
+      { headers: { "X-Auth-Token": "90781ba256f140ebbce7d262f211d222" } }
     )
-}
+      .then((response) => response.json())
+      .catch(() => {
+        console.error("Failed to fetch data");
+        // setLoading(false);
+      });
+
+    setData(data.standings[0].table);
+    // setLoading(false);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [activeLeague]);
+
+  return (
+    <Layout>
+      <div className="table__wrapper">
+        <div className="table__header">
+          {LEAGUES.map((league, index) => {
+            return (
+              <div
+                onClick={() => setActiveLeague(index)}
+                className={[
+                  "table__header",
+                  activeLeague === index ? "active" : "",
+                ].join(" ")}
+              >
+                <a
+                  className={[
+                    "table__link",
+                    activeLeague === index ? "active" : "",
+                  ].join(" ")}
+                >
+                  {league.name}
+                </a>
+              </div>
+            );
+          })}
+        </div>
+        <div className="table">
+          <div className="table__row">
+            <p>Position</p>
+            <p>Team</p>
+            <p>G</p>
+            <p>W</p>
+            <p>D</p>
+            <p>L</p>
+            <p>GS</p>
+            <p>GC</p>
+            <p>P</p>
+          </div>
+          {data.map((team, index) => {
+            return (
+              <div
+                className={[
+                  "table__row",
+                  index % 2 === 0 ? "odd" : "even",
+                ].join(" ")}
+              >
+                <p>{team.position}</p>
+                <p>{team.team.name}</p>
+                <p>{team.playedGames}</p>
+                <p>{team.won}</p>
+                <p>{team.draw}</p>
+                <p>{team.lost}</p>
+                <p>{team.goalsFor}</p>
+                <p>{team.goalsAgainst}</p>
+                <p>{team.points}</p>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </Layout>
+  );
+};
 export default Table;
+
+///v2/competitions/2021/standings?standingType="TOTAL
