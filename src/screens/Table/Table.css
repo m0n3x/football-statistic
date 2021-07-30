@@ -2,46 +2,53 @@
     width: 60%;
     margin: 2% auto;
 }
+
 .table {
     text-align: center;
     margin: auto;
     border: 2px solid #259c25;
 }
-.table > div:first-child {
+
+.table>div:first-child {
     background-color: #259c25;
     color: #fff;
 }
+
 .table__header {
     text-align: center;
     display: flex;
     justify-content: space-between;
     cursor: pointer;
-    
-    
 }
-.table__header > div {
+
+.table__header>div {
     background-color: rgb(177, 219, 168, 0.5);
     border-bottom: none;
     height: 40px;
 }
-.table__header > div > a {
+
+.table__header>div>a {
     color: #000;
     font-size: 20px;
     padding: 0 25px;
     margin-top: 5px;
 }
+
 .table__row {
     display: grid;
     grid-template-columns: 150px 300px repeat(7, 1fr);
     padding: 7px 0;
 }
+
 .odd {
     background-color: #ffffff;
 }
+
 .even {
     background-color: rgb(212, 212, 212);
 }
-.table__header > .active {
+
+.table__header>.active {
     background-color: #259c25;
     color: #fff;
 }
