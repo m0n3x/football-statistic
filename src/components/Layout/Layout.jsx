@@ -1,29 +1,31 @@
 import React from "react";
 import "./Layout.css";
+import { NavLink } from 'react-router-dom'
 
 const Layout = ({ children }) => {
   return (
-    <>
+      <>
       <header>
         <h1>Football Statistics</h1>
         <nav className="header__menu">
           <ul className="menu__list">
             <li>
-              <a href="#table" className="menu__item">
+              <NavLink to="/table" className="menu__item">
                 table
-              </a>
+              </NavLink>
             </li>
             <li>
-              <a href="#teams" className="menu__item">
+              <NavLink to="/teams" className="menu__item">
                 teams
-              </a>
+              </NavLink>
             </li>
           </ul>
         </nav>
       </header>
-      {children}
+        {children}
+
       <footer></footer>
-    </>
+      </>
   );
 };
 export default Layout;
