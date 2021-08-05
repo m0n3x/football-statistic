@@ -12,11 +12,11 @@ class Teams extends React.Component {
   componentDidMount() {
       (async () => {
           await fetch(
-            `${FETCHURL}competitions/${this.state.leagueId}/standings`,
+            `${FETCHURL}competitions/${this.state.leagueId}/teams`,
             { headers: TOKEN }
           )
           .then((response) => response.json())
-          .then(response => response.standings[0].table.map(item => ({url: item.team.crestUrl, name: item.team.name, id: item.team.id})))
+          .then(response => response.teams.map(item => ({url: item.crestUrl, name: item.name, shortName: item.shortName, id: item.id})))
           .then(data => this.setState({teams: data}))
           .catch((e) => {
             console.error("Failed to fetch data", e);
@@ -28,11 +28,11 @@ class Teams extends React.Component {
     if(prevState.leagueId !== this.state.leagueId) {
         (async () => {
             await fetch(
-              `${FETCHURL}competitions/${this.state.leagueId}/standings`,
+              `${FETCHURL}competitions/${this.state.leagueId}/teams`,
               { headers: TOKEN }
             )
             .then(response => response.json())
-            .then(response => response.standings[0].table.map(item => ({url: item.team.crestUrl, name: item.team.name, id: item.team.id})))
+            .then(response => response.teams.map(item => ({url: item.crestUrl, name: item.name, shortName: item.shortName, id: item.id})))
             .then(data => this.setState({teams: data}))
             .catch((e) => {
               console.error("Failed to fetch data", e);
@@ -45,25 +45,15 @@ class Teams extends React.Component {
       leagueName: LEAGUES[event.currentTarget.value].name,
       leagueId: LEAGUES[event.currentTarget.value].id,
     });
-    (async () => {
-      const data = await fetch(
-        `${FETCHURL}competitions/${this.state.leagueId}/standings`,
-        { headers: TOKEN }
-      )
-        .then((response) => response.json())
-        .catch(() => {
-          console.error("Failed to fetch data");
-        });
-        
-      console.log(data);
-    })();
+    
   };
   render() {
+    const { leagueName, teams } = this.state;
     return (
       <Layout>
         <div className="teams__wrapper">
           <div className="page__header">
-            <p>{this.state.leagueName}</p>
+            <h3>{leagueName}</h3>
           </div>
           <select className="teams__select" onChange={this.handleChange}>
             {LEAGUES.map((league, index) => {
@@ -75,15 +65,10 @@ class Teams extends React.Component {
             })}
           </select>
           <div className="teams__table">
-              {this.state.teams.map(team => {
-                  return <Card key={team.id} name={team.name} url={team.url}/>
+              {teams.map(team => {
+                  return <Card key={team.id} name={team.name} url={team.url} shortName={team.shortName}/>
               })}
            </div>
-        </div>
-        <div>
-          <p>
-              
-          </p>
         </div>
       </Layout>
     );

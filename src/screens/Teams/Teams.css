@@ -9,11 +9,12 @@
     color: #fff;
     position: relative;
 }
-.page__header > p {
+.page__header > h3 {
     position: absolute;
     top: 25%;
     left: 2%;
     font-size: 20px;
+    font-weight: 400;
 }
 .teams__select {
     display: block; 
