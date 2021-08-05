@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Layout from './components/Layout/Layout'
 import Table from './screens/Table/Table'
 import Teams from './screens/Teams/Teams'
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom'
