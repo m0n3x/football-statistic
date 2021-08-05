@@ -2,15 +2,8 @@ import React, { useEffect, useState } from "react";
 import "./Table.css";
 import Layout from "../../components/Layout/Layout";
 import Loader from "../../components/Loader/Loader";
-import { FETCHURL, TOKEN } from "../../components/Constant/Constant"
+import { FETCHURL, TOKEN, LEAGUES } from "../../components/Constant/Constant"
 
-const LEAGUES = [
-  { name: "English Premier League", id: 2021 },
-  { name: "German 1. Bundesliga", id: 2002 },
-  { name: "Spanish Primera", id: 2014 },
-  { name: "Italian Serie A", id: 2019 },
-  { name: "French League 1", id: 2015 },
-];
 
 const Table = () => {
   const [data, setData] = useState([]);
@@ -42,6 +35,7 @@ const Table = () => {
           {LEAGUES.map(league => {
             return (
               <div
+                key={league.id}
                 onClick={() => setActiveLeague(league.id)}
                className={`table__header ${activeLeague === league.id ? "active" : ""}`}
               >
@@ -67,7 +61,7 @@ const Table = () => {
           {loading && <Loader />}
           {data.map(({ position, team, playedGames, won, draw, lost, goalsFor, goalsAgainst, points }, index) => {
             return (
-              <div className={`table__row ${index % 2 === 0 ? "odd" : "even"}`}>
+              <div key={index} className={`table__row ${index % 2 === 0 ? "odd" : "even"}`}>
                 <p>{position}</p>
                 <p>{team.name}</p>
                 <p>{playedGames}</p>
