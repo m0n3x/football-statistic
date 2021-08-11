@@ -1,0 +1,17 @@
+.player__card {
+    height: 50px;
+    background-color: rgb(231, 229, 229);
+    margin-top: 10px;
+    position: absolute;
+}
+.card__shirt > img {
+    width: 64px;
+    
+    
+}
+.shirt__number {
+    position: relative;
+    left: 25px;
+    top: 41px;
+
+}

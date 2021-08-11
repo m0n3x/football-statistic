@@ -1,0 +1,7 @@
+.teams__table {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 15px;
+    grid-row-gap: 7px;
+  }
+  
