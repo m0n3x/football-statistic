@@ -3,7 +3,7 @@ import "./PlayerCard.css";
 
 const PlayerCard = (props) => {
     return (
-        <div className="card__wrapper"> 
+        <div className="card__wrapper players"> 
             <div className="card__description">
                 <h3 className="player__name">{props.name}</h3>
                 <h4 className="player__position">position: {props.position}</h4>
