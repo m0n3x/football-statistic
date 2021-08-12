@@ -1,9 +1,4 @@
-import {
-  addTeam
-} from '../actions'
-import {
-  removeTeam
-} from '../actions'
+import { addTeam, removeTeam, removeAll } from '../actions'
 
 const initialState = {
   favourites: [],
@@ -21,7 +16,17 @@ export default function appReducer(state = initialState, action) {
     }
     case removeTeam.toString(): {
       const favourites = [...state.favourites];
-      favourites.splice(favourites.indexOf(action.payload.team), 1)
+      const teamIndex = favourites.findIndex(team => team.id === action.payload.id);
+      if(teamIndex === -1) return state;
+      favourites.splice(teamIndex, 1);
+      return {
+        ...state,
+        favourites
+      }
+    }
+    case removeAll.toString(): {
+      const favourites = [...state.favourites];
+      favourites.splice(0, favourites.length);
       return {
         ...state,
         favourites

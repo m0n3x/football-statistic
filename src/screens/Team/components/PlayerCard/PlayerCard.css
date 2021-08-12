@@ -6,12 +6,9 @@
 }
 .card__shirt > img {
     width: 64px;
-    
-    
 }
 .shirt__number {
     position: relative;
-    left: 25px;
     top: 41px;
-
+    text-align: center;
 }

@@ -1,37 +1,54 @@
 import React from "react";
 import "./Card.css";
-import { useDispatch } from 'react-redux'
-import { addTeam } from '../../store/actions'
-import { removeTeam } from '../../store/actions'
+import { useDispatch, useSelector } from "react-redux";
+import { addTeam } from "../../store/actions";
+import { removeTeam } from "../../store/actions";
 
-const Card = ({id, url, name, shortName}) => {
-    const dispatch = useDispatch();
+const Card = ({ id, url, name, shortName }) => {
+  const favourites = useSelector((state) => state.favourites);
 
-    const handleAdd = (e) => {
-        e.preventDefault();
-        const team = { id, url, name, shortName };
-       
-        dispatch(addTeam({ team }));
-    }
+  const dispatch = useDispatch();
 
-    const handleRemove = (e) => {
-        e.preventDefault();
-        
-        const team = { id, url, name, shortName };
-        dispatch(removeTeam({ team }));
-    }
+  const handleAdd = (e) => {
+    e.preventDefault();
+    const team = { id, url, name, shortName };
 
-    return (
-        <div className="card__wrapper"> 
-            <div className="card__img"><img className="card__img" key={id} src={url} alt=""/></div>
-            <div className="card__description">
-                <h3 className="team__name">{name}</h3>
-                <h4 className="team__shortName">short name: {shortName}</h4>
-                <button type="button" className="card__button" onClick={(e) => handleAdd(e)}>Add team to favourite</button>
-                <button type="button" className="card__button" onClick={(e) => handleRemove(e)}>Remove team from favourite</button>
-            </div> 
-        </div>
-    )
-  }
+    dispatch(addTeam({ team }));
+  };
 
-export default Card
+  const handleRemove = (e) => {
+    e.preventDefault();
+    dispatch(removeTeam({ id }));
+  };
+
+  const isFavourite = favourites.findIndex((team) => team.id === id) !== -1;
+  return (
+    <div className="card__wrapper">
+      <div className="card__img">
+        <img className="card__img" key={id} src={url} alt="" />
+      </div>
+      <div className="card__description">
+        <h3 className="team__name">{name}</h3>
+        <h4 className="team__shortName">short name: {shortName}</h4>
+        {!isFavourite ? (
+          <button
+            type="button"
+            className="card__button add"
+            onClick={(e) => handleAdd(e)}
+          >
+            Add team to favourite
+          </button>
+        ) : (
+          <button
+            type="button"
+            className="card__button remove"
+            onClick={(e) => handleRemove(e)}
+          >
+            Remove team from favourite
+          </button>
+        )}
+      </div>
+    </div>
+  );
+};
+export default Card;

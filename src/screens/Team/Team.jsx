@@ -58,7 +58,7 @@ const Team = () => {
         <div className="players__wrapper">      
             {data.squad.map(({ name, position, dateOfBirth, id, shirtNumber }) => {
                   return (
-                      <PlayerCard key={id} name={name} position={position} dateOfBirth={dateOfBirth} shirtNumber={shirtNumber}/>
+                      <PlayerCard key={id} name={name} position={position} dateOfBirth={dateOfBirth} shirtNumber={shirtNumber || '?'}/>
                   )
               })} 
         </div>
