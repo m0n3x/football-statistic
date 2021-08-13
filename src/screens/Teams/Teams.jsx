@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "../../components/Layout/Layout";
 import { LEAGUES, FETCHURL, TOKEN } from "../../components/Constant/Constant";
 import "./Teams.css";
-import Card from "./components/Card/Card"
+import TeamList from "../../components/TeamList/TeamList"
 
 class Teams extends React.Component {
   constructor(props) {
@@ -64,14 +64,11 @@ class Teams extends React.Component {
               );
             })}
           </select>
-          <div className="teams__table">
-              {teams.map(team => {
-                  return <Card key={team.id} name={team.name} url={team.url} shortName={team.shortName}/>
-              })}
-           </div>
+            <TeamList teams={teams}/>
         </div>
       </Layout>
     );
   }
 }
 export default Teams;
+

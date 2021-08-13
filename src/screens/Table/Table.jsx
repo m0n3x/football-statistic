@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import "./Table.css";
 import Layout from "../../components/Layout/Layout";
 import Loader from "../../components/Loader/Loader";
-import { FETCHURL, TOKEN, LEAGUES } from "../../components/Constant/Constant"
+import { FETCHURL, TOKEN, LEAGUES } from "../../components/Constant/Constant";
+import { Link } from "react-router-dom";
 
 
 const Table = () => {
@@ -61,6 +62,7 @@ const Table = () => {
           {loading && <Loader />}
           {data.map(({ position, team, playedGames, won, draw, lost, goalsFor, goalsAgainst, points }, index) => {
             return (
+              <Link to={`/teams/${team.id}`}> 
               <div key={index} className={`table__row ${index % 2 === 0 ? "odd" : "even"}`}>
                 <p>{position}</p>
                 <p>{team.name}</p>
@@ -72,6 +74,7 @@ const Table = () => {
                 <p>{goalsAgainst}</p>
                 <p>{points}</p>
               </div>
+              </Link>
             );
           })}
         </div>

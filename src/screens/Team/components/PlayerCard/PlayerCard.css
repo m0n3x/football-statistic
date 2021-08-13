@@ -1,0 +1,22 @@
+.card__wrapper.players {
+    justify-content: space-around;
+}
+.player__name {
+    font-weight: 500;
+}
+.player__position, .player__birthday {
+    font-weight: 400;
+}
+.card__description.players {
+    width: 200px;
+}
+.card__shirt > img {
+    width: 64px;
+    height: 64px;
+}
+.shirt__number {
+    position: relative;
+    top: 41px;
+    text-align: center;
+    font-weight: 600;
+}

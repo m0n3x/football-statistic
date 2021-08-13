@@ -11,12 +11,17 @@ const Layout = ({ children }) => {
           <ul className="menu__list">
             <li>
               <NavLink to="/table" className="menu__item">
-                table
+                Table
               </NavLink>
             </li>
             <li>
               <NavLink to="/teams" className="menu__item">
-                teams
+                Teams
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/favourites" className="menu__item">
+                Favourites
               </NavLink>
             </li>
           </ul>
