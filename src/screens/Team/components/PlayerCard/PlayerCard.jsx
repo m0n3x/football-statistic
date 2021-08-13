@@ -4,7 +4,7 @@ import "./PlayerCard.css";
 const PlayerCard = (props) => {
     return (
         <div className="card__wrapper players"> 
-            <div className="card__description">
+            <div className="card__description players">
                 <h3 className="player__name">{props.name}</h3>
                 <h4 className="player__position">position: {props.position}</h4>
                 <h4 className="player__birthday">date of birth: {new Date(props.dateOfBirth).toLocaleDateString("en-US")}</h4>

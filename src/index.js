@@ -7,10 +7,10 @@ import Team from './screens/Team/Team'
 import Favourites from './screens/Favourites/Favourites'
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom'
 import { Provider } from 'react-redux'
-import { createStore, applyMiddleware } from 'redux'
+import { createStore } from 'redux'
 import reducer from './store/reducers'
 
-const store = createStore(reducer, applyMiddleware());
+const store = createStore(reducer);
 
 ReactDOM.render(
   <React.StrictMode>

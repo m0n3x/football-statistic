@@ -4,33 +4,25 @@ const initialState = {
   favourites: [],
 }
 
-export default function appReducer(state = initialState, action) {
-  switch (action.type) {
+export default function appReducer(state = initialState, { type, payload }) {
+  switch (type) {
     case addTeam.toString(): {
-      const favourites = [...state.favourites];
-      favourites.push(action.payload.team);
+      const favourites = state.favourites.concat(payload.team);
       return {
-        ...state,
         favourites
       }
     }
     case removeTeam.toString(): {
       const favourites = [...state.favourites];
-      const teamIndex = favourites.findIndex(team => team.id === action.payload.id);
+      const teamIndex = favourites.findIndex(team => team.id === payload.id);
       if(teamIndex === -1) return state;
       favourites.splice(teamIndex, 1);
       return {
-        ...state,
         favourites
       }
     }
     case removeAll.toString(): {
-      const favourites = [...state.favourites];
-      favourites.splice(0, favourites.length);
-      return {
-        ...state,
-        favourites
-      }
+      return initialState;
     }
     default:
       return state

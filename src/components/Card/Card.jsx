@@ -1,8 +1,7 @@
 import React from "react";
 import "./Card.css";
 import { useDispatch, useSelector } from "react-redux";
-import { addTeam } from "../../store/actions";
-import { removeTeam } from "../../store/actions";
+import { addTeam, removeTeam } from "../../store/actions";
 
 const Card = ({ id, url, name, shortName }) => {
   const favourites = useSelector((state) => state.favourites);
@@ -25,7 +24,7 @@ const Card = ({ id, url, name, shortName }) => {
   return (
     <div className="card__wrapper">
       <div className="card__img">
-        <img className="card__img" key={id} src={url} alt="" />
+        <img className="card__img" src={url} alt="" />
       </div>
       <div className="card__description">
         <h3 className="team__name">{name}</h3>

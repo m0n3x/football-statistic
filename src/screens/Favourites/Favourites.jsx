@@ -20,7 +20,7 @@ const Favourites = () => {
           <button
             type="button"
             className="btn__remove-all"
-            onClick={() => removeAllTeam()}
+            onClick={removeAllTeam}
           >
             Remove All
           </button>

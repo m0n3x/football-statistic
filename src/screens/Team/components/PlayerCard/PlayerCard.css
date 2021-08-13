@@ -7,7 +7,7 @@
 .player__position, .player__birthday {
     font-weight: 400;
 }
-.card__description {
+.card__description.players {
     width: 200px;
 }
 .card__shirt > img {
