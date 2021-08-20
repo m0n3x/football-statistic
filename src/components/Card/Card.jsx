@@ -3,9 +3,8 @@ import "./Card.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addTeam, removeTeam } from "../../store/actions";
 
-const Card = ({ id, url, name, shortName }) => {
+const Card = ({ id, url, name, shortName, handleClick, pageUrl }) => {
   const favourites = useSelector((state) => state.favourites);
-
   const dispatch = useDispatch();
 
   const handleAdd = (e) => {
@@ -21,6 +20,7 @@ const Card = ({ id, url, name, shortName }) => {
   };
 
   const isFavourite = favourites.findIndex((team) => team.id === id) !== -1;
+
   return (
     <div className="card__wrapper">
       <div className="card__img">
@@ -29,6 +29,7 @@ const Card = ({ id, url, name, shortName }) => {
       <div className="card__description">
         <h3 className="team__name">{name}</h3>
         <h4 className="team__shortName">short name: {shortName}</h4>
+
         {!isFavourite ? (
           <button
             type="button"
@@ -45,6 +46,19 @@ const Card = ({ id, url, name, shortName }) => {
           >
             Remove team from favourite
           </button>
+        )}
+        {pageUrl && (
+          <div className="btn-wrapper">
+            <button className="btn__players" onClick={() => handleClick(true)}>
+              Players
+            </button>
+            <button
+              className="btn__fixtures"
+              onClick={() => handleClick(false)}
+            >
+              Fixtures
+            </button>
+          </div>
         )}
       </div>
     </div>

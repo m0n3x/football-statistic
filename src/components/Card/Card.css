@@ -30,6 +30,7 @@
     color: #fff; 
     text-decoration: none; 
     user-select: none; 
+    width: 100%;
     padding: 3px 4px; 
     outline: none; 
     border: 1px solid #000;
@@ -47,3 +48,6 @@
     background-color: rgb(223, 51, 51); 
 }
 
+.btn__players, .btn__fixtures {
+    width: 50%;
+}

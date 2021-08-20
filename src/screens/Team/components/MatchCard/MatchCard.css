@@ -1,0 +1,12 @@
+.card__wrapper.matches, .match__score, .match__teams, .match__league{
+    display: flex;
+    justify-content: center;
+}
+.match__league {
+    font-weight: 500;
+
+}
+.match__teams{
+    font-weight: 400;
+    font-size: 15px;
+}
